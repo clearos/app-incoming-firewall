@@ -1,13 +1,11 @@
 
 Name: app-incoming-firewall
-Group: ClearOS/Apps
 Epoch: 1
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
-Packager: ClearFoundation
-Vendor: ClearFoundation
+Group: ClearOS/Apps
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
@@ -19,8 +17,8 @@ Keep the bad guys out by using the firewall to allow or block connections to you
 
 %package core
 Summary: Incoming Firewall - APIs and install
-Group: ClearOS/Libraries
 License: LGPLv3
+Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: app-firewall-core
 Requires: app-network-core
