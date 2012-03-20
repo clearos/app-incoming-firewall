@@ -99,7 +99,7 @@ foreach ($ports as $rule) {
 ///////////////////////////////////////////////////////////////////////////////
 
 foreach ($ranges as $rule) {
-    $key = $rule['protocol'] . '/' . $rule['from'] . '/' . $rule['to'];
+    $key = $rule['protocol_name'] . '/' . $rule['from'] . '/' . $rule['to'];
     $state = ($rule['enabled']) ? 'disable' : 'enable';
     $state_anchor = 'anchor_' . $state;
 
@@ -114,7 +114,7 @@ foreach ($ranges as $rule) {
     $item['details'] = array(
         $rule['name'],
         $rule['service'],
-        $rule['protocol'],
+        $rule['protocol_name'],
         $rule['from'] . ':' . $rule['to'],
     );
 
