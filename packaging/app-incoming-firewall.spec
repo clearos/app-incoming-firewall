@@ -1,7 +1,7 @@
 
 Name: app-incoming-firewall
 Epoch: 1
-Version: 1.0.10
+Version: 1.1.0
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
@@ -16,7 +16,7 @@ Requires: app-network
 Keep the bad guys out by using the firewall to allow or block connections to your system and network.
 
 %package core
-Summary: Incoming Firewall - APIs and install
+Summary: Incoming Firewall - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
