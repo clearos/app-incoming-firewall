@@ -253,17 +253,26 @@ class Incoming extends Firewall
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        Validation_Exception::is_valid($this->validate_protocol($protocol));
-        Validation_Exception::is_valid($this->validate_port($port));
+        // TODO: fix PPTP/IPsec handling
+        if ($protocol === 'PPTP') {
+            if ($this->get_pptp_server_state())
+                return Firewall::CONSTANT_ENABLED;
+        } else if ($protocol === 'IPsec') {
+            if ($this->get_ipsec_server_state())
+                return Firewall::CONSTANT_ENABLED;
+        } else {
+            Validation_Exception::is_valid($this->validate_protocol($protocol));
+            Validation_Exception::is_valid($this->validate_port($port));
 
-        $ports = $this->get_allow_ports();
+            $ports = $this->get_allow_ports();
 
-        foreach ($ports as $portinfo) {
-            if (($portinfo['port'] == $port) && ($portinfo['protocol_name'] == $protocol)) {
-                if ($portinfo['enabled'])
-                    return Firewall::CONSTANT_ENABLED;
-                else
-                    return Firewall::CONSTANT_DISABLED;
+            foreach ($ports as $portinfo) {
+                if (($portinfo['port'] == $port) && ($portinfo['protocol_name'] == $protocol)) {
+                    if ($portinfo['enabled'])
+                        return Firewall::CONSTANT_ENABLED;
+                    else
+                        return Firewall::CONSTANT_DISABLED;
+                }
             }
         }
 
