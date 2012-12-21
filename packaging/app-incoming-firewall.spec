@@ -1,7 +1,7 @@
 
 Name: app-incoming-firewall
 Epoch: 1
-Version: 1.4.7
+Version: 1.4.10
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
