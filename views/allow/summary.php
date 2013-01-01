@@ -153,15 +153,18 @@ if ($pptp) {
     $items[] = $item;
 }
 
+sort($items);
+
 ///////////////////////////////////////////////////////////////////////////////
 // Summary table
 ///////////////////////////////////////////////////////////////////////////////
 
-sort($items);
+$options['default_rows'] = 25;
 
 echo summary_table(
     lang('incoming_firewall_allowed_incoming_connections'),
     $anchors,
     $headers,
-    $items
+    $items,
+    $options
 );
