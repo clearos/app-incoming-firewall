@@ -131,9 +131,11 @@ class Block extends ClearOS_Controller
 
     function delete($host)
     {
+        $host_item = preg_replace('/_/', '/', $host);
+
         $confirm_uri = '/app/incoming_firewall/block/destroy/' . $host;
         $cancel_uri = '/app/incoming_firewall/block';
-        $items = array($host);
+        $items = array($host_item);
 
         $this->page->view_confirm_delete($confirm_uri, $cancel_uri, $items);
     }
@@ -149,6 +151,7 @@ class Block extends ClearOS_Controller
     function destroy($host)
     {
         try {
+            $host = preg_replace('/_/', '/', $host);
             $this->load->library('incoming_firewall/Incoming');
 
             $this->incoming->delete_block_host($host);
@@ -172,6 +175,7 @@ class Block extends ClearOS_Controller
     function disable($host)
     {
         try {
+            $host = preg_replace('/_/', '/', $host);
             $this->load->library('incoming_firewall/Incoming');
 
             $this->incoming->set_block_host_state(FALSE, $host);
@@ -195,6 +199,7 @@ class Block extends ClearOS_Controller
     function enable($host)
     {
         try {
+            $host = preg_replace('/_/', '/', $host);
             $this->load->library('incoming_firewall/Incoming');
 
             $this->incoming->set_block_host_state(TRUE, $host);

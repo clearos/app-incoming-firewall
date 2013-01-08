@@ -56,7 +56,7 @@ $anchors = array(anchor_add('/app/incoming_firewall/block/add'));
 ///////////////////////////////////////////////////////////////////////////////
 
 foreach ($hosts as $rule) {
-    $key = $rule['host'];
+    $key = preg_replace('/\//', '_', $rule['host']);
     $state = ($rule['enabled']) ? 'disable' : 'enable';
     $state_anchor = 'anchor_' . $state;
 
