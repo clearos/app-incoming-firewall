@@ -7,7 +7,7 @@
  * @package    Incoming_Firewall
  * @subpackage Libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2004-2011 ClearFoundation
+ * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
  */
@@ -81,7 +81,7 @@ clearos_load_library('base/Validation_Exception');
  * @package    Incoming_Firewall
  * @subpackage Libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2004-2011 ClearFoundation
+ * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
  */
@@ -129,7 +129,7 @@ class Incoming extends Firewall
         $rule->set_port($port);
         $rule->set_flags(Rule::INCOMING_ALLOW | Rule::ENABLED);
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 
     /**
@@ -160,7 +160,7 @@ class Incoming extends Firewall
         $rule->set_port_range($from, $to);
         $rule->set_flags(Rule::INCOMING_ALLOW | Rule::ENABLED);
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 
     /**
@@ -185,7 +185,7 @@ class Incoming extends Firewall
         } else {
             $rule = new Rule();
 
-            $ports = $this->get_ports_list();
+            $ports = $this->_get_ports_list();
 
             foreach ($ports as $port) {
                 if ($port[3] != $service)
@@ -203,13 +203,13 @@ class Incoming extends Firewall
                     $rule->set_port($port[2]);
                 }
 
-                $this->add_rule($rule);
+                $this->_add_rule($rule);
             }
         }
     }
 
     /**
-     * Block incoming host connection(s).
+     * Adds a host to the incoming block list.
      *
      * @param string $name    rule name
      * @param string $address address
@@ -231,7 +231,7 @@ class Incoming extends Firewall
         $rule->set_address($address);
         $rule->set_name($name);
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 
     /**
@@ -280,7 +280,7 @@ class Incoming extends Firewall
     }
 
     /**
-     * Delete a port from the incoming allow list.
+     * Deletes a port from the incoming allow list.
      *
      * @param string  $protocol protocol
      * @param integer $port     port number
@@ -302,7 +302,7 @@ class Incoming extends Firewall
         $rule->set_port($port);
         $rule->set_flags(Rule::INCOMING_ALLOW);
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
     }
 
     /**
@@ -330,11 +330,11 @@ class Incoming extends Firewall
         $rule->set_port_range($from, $to);
         $rule->set_flags(Rule::INCOMING_ALLOW);
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
     }
 
     /**
-     * Delete incoming host block rule.
+     * Deletes a host from the incoming block list.
      *
      * @param string $address address
      *
@@ -353,7 +353,7 @@ class Incoming extends Firewall
         $rule->set_flags(Rule::INCOMING_BLOCK);
         $rule->set_address($address);
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
     }
 
     /**
@@ -377,7 +377,7 @@ class Incoming extends Firewall
 
         $port_list = array();
 
-        $rules = $this->get_rules();
+        $rules = $this->_get_rules();
 
         foreach ($rules as $rule) {
             if (!strstr($rule->get_port(), ':'))
@@ -399,7 +399,7 @@ class Incoming extends Firewall
             $info['protocol'] = $rule->get_protocol();
             $info['protocol_name'] = $rule->get_protocol_name();
             list($info['from'], $info['to']) = preg_split('/:/', $rule->get_port(), 2);
-            $info['service'] = $this->lookup_service($info['protocol'], $info['from']);
+            $info['service'] = $this->_lookup_service($info['protocol'], $info['from']);
 
             $port_list[] = $info;
         }
@@ -427,7 +427,7 @@ class Incoming extends Firewall
 
         $port_list = array();
 
-            $rules = $this->get_rules();
+            $rules = $this->_get_rules();
 
         foreach ($rules as $rule) {
             if (strstr($rule->get_port(), ':'))
@@ -449,7 +449,7 @@ class Incoming extends Firewall
             $info['protocol'] = $rule->get_protocol();
             $info['protocol_name'] = $rule->get_protocol_name();
             $info['enabled'] = $rule->is_enabled();
-            $info['service'] = $this->lookup_service($info['protocol'], $info['port']);
+            $info['service'] = $this->_lookup_service($info['protocol'], $info['port']);
 
             $port_list[] = $info;
         }
@@ -458,14 +458,9 @@ class Incoming extends Firewall
     }
 
     /**
-     * Gets incoming host block rules.  The information is an array
-     * with the following hash array entries:
+     * Return hosts in incoming block list.
      *
-     *  info[name]
-     *  info[host]
-     *  info[enabled]
-     *
-     * @return array array containing incoming host block rules
+     * @return array array containing blocked hosts
      * @throws Engine_Exception
      */
 
@@ -475,7 +470,7 @@ class Incoming extends Firewall
 
         $hosts = array();
 
-        $rules = $this->get_rules();
+        $rules = $this->_get_rules();
 
         foreach ($rules as $rule) {
             if (!($rule->get_flags() & Rule::INCOMING_BLOCK))
@@ -506,7 +501,7 @@ class Incoming extends Firewall
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        return $this->get_state('IPSEC_SERVER');
+        return $this->_get_state('IPSEC_SERVER');
     }
 
     /**
@@ -520,7 +515,7 @@ class Incoming extends Firewall
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        return $this->get_state('PPTP_SERVER');
+        return $this->_get_state('PPTP_SERVER');
     }
 
     /**
@@ -536,7 +531,7 @@ class Incoming extends Firewall
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        $this->set_state($state, 'IPSEC_SERVER');
+        $this->_set_state($state, 'IPSEC_SERVER');
     }
 
     /**
@@ -552,11 +547,11 @@ class Incoming extends Firewall
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        $this->set_state($state, 'PPTP_SERVER');
+        $this->_set_state($state, 'PPTP_SERVER');
     }
 
     /**
-     * Enable/disable a port from the incoming allow list.
+     * Sets state for a port on the incoming allow list.
      *
      * @param boolean $state    state of rule
      * @param string  $protocol protocol
@@ -579,23 +574,23 @@ class Incoming extends Firewall
         $rule->set_port($port);
         $rule->set_flags(Rule::INCOMING_ALLOW);
 
-        if (!($rule = $this->find_rule($rule)))
+        if (!($rule = $this->_find_rule($rule)))
             return;
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
 
         if ($state)
             $rule->enable();
         else
             $rule->disable();
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 
     /**
-     * Enable/disable a port range from the incoming allow list.
+     * Sets state of port range on the incoming allow list.
      *
-     * @param boolean $state   state of rule
+     * @param boolean $state    state of rule
      * @param string  $protocol protocol
      * @param integer $from     from port number
      * @param integer $to       to port number
@@ -618,21 +613,21 @@ class Incoming extends Firewall
         $rule->set_port_range($from, $to);
         $rule->set_flags(Rule::INCOMING_ALLOW);
 
-        if (!($rule = $this->find_rule($rule)))
+        if (!($rule = $this->_find_rule($rule)))
             return;
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
 
         if ($state)
             $rule->enable();
         else
             $rule->disable();
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 
     /**
-     * Enable/disable incoming host block rule.
+     * Sets state of host on the incoming block list.
      *
      * @param boolean $state   state
      * @param string  $address address
@@ -652,16 +647,16 @@ class Incoming extends Firewall
         $rule->set_flags(Rule::INCOMING_BLOCK);
         $rule->set_address($address);
 
-        if (!($rule = $this->find_rule($rule)))
+        if (!($rule = $this->_find_rule($rule)))
             return;
 
-        $this->delete_rule($rule);
+        $this->_delete_rule($rule);
 
         if ($state)
             $rule->enable();
         else
             $rule->disable();
 
-        $this->add_rule($rule);
+        $this->_add_rule($rule);
     }
 }

@@ -7,7 +7,7 @@
  * @package    Incoming_Firewall
  * @subpackage Libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2004-2011 ClearFoundation
+ * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
  */
@@ -76,7 +76,7 @@ clearos_load_library('network/Network');
  * @package    Incoming_Firewall
  * @subpackage Libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2004-2011 ClearFoundation
+ * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
  */
@@ -88,7 +88,7 @@ class Port extends Engine
     ///////////////////////////////////////////////////////////////////////////
 
     /**
-     * Incoming constructor.
+     * Port check firewall constructor.
      */
 
     public function __construct()
@@ -97,9 +97,8 @@ class Port extends Engine
     }
 
     /**
-     * Adds a port/to the incoming allow list.
+     * Checks to see if given protocol/port is firewalled.
      *
-     * @param string  $name     name
      * @param string  $protocol protocol
      * @param integer $port     port number
      *
@@ -146,20 +145,5 @@ class Port extends Engine
             $incoming->set_allow_port_state($protocol, $port);
         else if ($state === Firewall::CONSTANT_NOT_CONFIGURED)
             $incoming->add_allow_port($name, $protocol, $port);
-    }
-
-    /**
-     * Delete a port from the incoming allow list.
-     *
-     * @param string  $protocol protocol
-     * @param integer $port     port number
-     *
-     * @return void
-     * @throws Engine_Exception, ValidationException
-     */
-
-    public function delete_allow_port($protocol, $port)
-    {
-        clearos_profile(__METHOD__, __LINE__);
     }
 }
