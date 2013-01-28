@@ -13,7 +13,7 @@ Requires: app-base
 Requires: app-network
 
 %description
-The Incoming Firewall app keeps the bad guys out by using the firewall to allow or block connections to your system and network.
+The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.
 
 %package core
 Summary: Incoming Firewall - Core
@@ -24,7 +24,7 @@ Requires: app-firewall-core >= 1:1.4.15
 Requires: app-network-core
 
 %description core
-The Incoming Firewall app keeps the bad guys out by using the firewall to allow or block connections to your system and network.
+The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.
 
 This package provides the core API and libraries.
 
