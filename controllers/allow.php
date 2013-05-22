@@ -3,9 +3,9 @@
 /**
  * Firewall incoming allow controller.
  *
- * @category   Apps
- * @package    Incoming_Firewall
- * @subpackage Controllers
+ * @category   apps
+ * @package    incoming-firewall
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
@@ -42,9 +42,9 @@ use \clearos\apps\firewall\Firewall as Firewall;
 /**
  * Firewall incoming allow controller.
  *
- * @category   Apps
- * @package    Incoming_Firewall
- * @subpackage Controllers
+ * @category   apps
+ * @package    incoming-firewall
+ * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

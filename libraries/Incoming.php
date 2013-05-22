@@ -3,9 +3,9 @@
 /**
  * Incoming firewall class.
  *
- * @category   Apps
- * @package    Incoming_Firewall
- * @subpackage Libraries
+ * @category   apps
+ * @package    incoming-firewall
+ * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
@@ -77,9 +77,9 @@ clearos_load_library('base/Validation_Exception');
 /**
  * Incoming firewall class.
  *
- * @category   Apps
- * @package    Incoming_Firewall
- * @subpackage Libraries
+ * @category   apps
+ * @package    incoming-firewall
+ * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2004-2013 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
