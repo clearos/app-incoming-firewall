@@ -36,6 +36,7 @@ This package provides the core API and libraries.
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/incoming_firewall
 cp -r * %{buildroot}/usr/clearos/apps/incoming_firewall/
 
+install -D -m 0755 packaging/allow-port %{buildroot}/usr/sbin/allow-port
 
 %post
 logger -p local6.notice -t installer 'app-incoming-firewall - installing'
@@ -78,3 +79,4 @@ exit 0
 /usr/clearos/apps/incoming_firewall/deploy
 /usr/clearos/apps/incoming_firewall/language
 /usr/clearos/apps/incoming_firewall/libraries
+/usr/sbin/allow-port

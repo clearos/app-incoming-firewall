@@ -1,0 +1,98 @@
+#!/usr/clearos/sandbox/usr/bin/php
+<?php
+
+/**
+ * Incoming firewall script for allowing ports.
+ *
+ * @category   apps
+ * @package    incoming-firewall
+ * @subpackage scripts
+ * @author     ClearFoundation <developer@clearfoundation.com>
+ * @copyright  2013 ClearFoundation
+ * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
+ * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
+ */
+
+///////////////////////////////////////////////////////////////////////////////
+// B O O T S T R A P
+///////////////////////////////////////////////////////////////////////////////
+
+$bootstrap = getenv('CLEAROS_BOOTSTRAP') ? getenv('CLEAROS_BOOTSTRAP') : '/usr/clearos/framework/shared';
+require_once $bootstrap . '/bootstrap.php';
+
+///////////////////////////////////////////////////////////////////////////////
+// D E P E N D E N C I E S
+///////////////////////////////////////////////////////////////////////////////
+
+use \clearos\apps\firewall\Rule_Already_Exists_Exception as Rule_Already_Exists_Exception;
+use \clearos\apps\incoming_firewall\Incoming as Incoming;
+
+clearos_load_library('firewall/Rule_Already_Exists_Exception');
+clearos_load_library('incoming_firewall/Incoming');
+
+///////////////////////////////////////////////////////////////////////////////
+// O P T I O N S
+///////////////////////////////////////////////////////////////////////////////
+
+$short_options = '';
+$short_options .= 'n:'; // Nickname
+$short_options .= 'p:'; // Protocol
+$short_options .= 'd:'; // Port number
+$short_options .= 'h';  // Help
+
+$help_options  = '';
+$help_options .= "  -n: Nickname\n";
+$help_options .= "  -p: Protocol (TCP or UDP)\n";
+$help_options .= "  -d: Port number\n";
+$help_options .= "\n";
+$help_options .= "  -h: Help\n";
+
+$options = getopt($short_options);
+
+$help = isset($options['h']) ? TRUE : FALSE;
+$nickname = isset($options['n']) ? $options['n'] : '';
+$protocol = isset($options['p']) ? $options['p'] : '';
+$port = isset($options['d']) ? $options['d'] : '';
+
+///////////////////////////////////////////////////////////////////////////////
+// M A I N
+///////////////////////////////////////////////////////////////////////////////
+
+$incoming = new Incoming();
+
+// Basic usage stuff
+//------------------
+
+if ($help) {
+    echo "usage: " . $argv[0] . " [options]\n";
+    echo $help_options;
+    exit(0);
+}
+
+while ($incoming->validate_protocol($protocol)) {
+    echo 'Protocol (TCP or UDP): ';
+    $protocol = trim(fgets(STDIN));
+}
+
+while ($incoming->validate_port($port)) {
+    echo 'Port Number: ';
+    $port = trim(fgets(STDIN));
+}
+
+while (empty($nickname) || $incoming->validate_name($nickname)) {
+    echo 'Nickname: ';
+    $nickname = trim(fgets(STDIN));
+}
+// Run it
+//-------
+
+echo "Nickname: $nickname\n";
+echo "Protocol: $protocol\n";
+echo "Port:     $port\n";
+echo "\n";
+
+try {
+    $incoming->add_allow_port($nickname, $protocol, $port);
+} catch (Rule_Already_Exists_Exception $e) {
+    // Not fatal
+}

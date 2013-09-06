@@ -42,3 +42,10 @@ $app['core_requires'] = array(
     'app-firewall-core >= 1:1.4.15',
     'app-network-core',
 );
+
+$app['core_file_manifest'] = array(
+    'allow-port' => array(
+        'target' => '/usr/sbin/allow-port',
+        'mode' => '0755',
+    ),
+);
