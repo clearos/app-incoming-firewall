@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'incoming_firewall';
-$app['version'] = '1.4.20';
+$app['version'] = '1.4.21';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -40,7 +40,7 @@ $app['requires'] = array(
 
 $app['core_requires'] = array(
     'app-firewall-core >= 1:1.4.15',
-    'app-network-core',
+    'app-network-core >= 1:1.5.1',
 );
 
 $app['core_file_manifest'] = array(
