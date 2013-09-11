@@ -62,6 +62,7 @@ foreach ($hosts as $rule) {
 
     $item['title'] = $rule['name'];
     $item['action'] = '/app/incoming_firewall/block/delete/' . $key;
+    $item['current_state'] = (bool)$rule['enabled'];
     $item['anchors'] = button_set(
         array(
             $state_anchor('/app/incoming_firewall/block/' . $state . '/' . $key, 'high'),
@@ -82,7 +83,10 @@ sort($items);
 // Summary table
 ///////////////////////////////////////////////////////////////////////////////
 
-$options['default_rows'] = 25;
+$options = array (
+    'default_rows' => 25,
+    'row-enable-disable' => TRUE
+);
 
 echo summary_table(
     lang('incoming_firewall_blocked_incoming_connections'),

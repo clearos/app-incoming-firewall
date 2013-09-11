@@ -84,6 +84,7 @@ foreach ($ports as $rule) {
     }
 
     $item['title'] = $rule['name'];
+    $item['current_state'] = (bool)$rule['enabled'];
     $item['action'] = '/app/incoming_firewall/allow/delete/' . $key;
     $item['anchors'] = button_set(
         array(
@@ -118,6 +119,7 @@ foreach ($ranges as $rule) {
             anchor_delete('/app/incoming_firewall/allow/delete_range/' . $key, 'low')
         )
     );
+    $item['current_state'] = (bool)$rule['enabled'];
     $item['details'] = array(
         $rule['name'],
         $rule['service'],
@@ -136,6 +138,7 @@ if ($ipsec) {
     $item['title'] = 'IPsec';
     $item['action'] = '/app/incoming_firewall/allow/delete_ipsec';
     $item['anchors'] = anchor_delete('/app/incoming_firewall/allow/delete_ipsec');
+    $item['current_state'] = TRUE;
     $item['details'] = array(
         'IPsec',
         'IPsec',
@@ -150,6 +153,7 @@ if ($pptp) {
     $item['title'] = 'PPTP';
     $item['action'] = '/app/incoming_firewall/allow/delete_pptp';
     $item['anchors'] = anchor_delete('/app/incoming_firewall/allow/delete_pptp');
+    $item['current_state'] = TRUE;
     $item['details'] = array(
         'PPTP',
         'PPTP',
@@ -166,7 +170,10 @@ sort($items);
 // Summary table
 ///////////////////////////////////////////////////////////////////////////////
 
-$options['default_rows'] = 25;
+$options = array (
+    'default_rows' => 25,
+    'row-enable-disable' => TRUE
+);
 
 echo summary_table(
     lang('incoming_firewall_allowed_incoming_connections'),
