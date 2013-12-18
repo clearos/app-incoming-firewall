@@ -1,7 +1,7 @@
 
 Name: app-incoming-firewall
 Epoch: 1
-Version: 1.5.5
+Version: 1.5.6
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
@@ -20,7 +20,7 @@ Summary: Incoming Firewall - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
-Requires: app-firewall-core >= 1:1.4.15
+Requires: app-firewall-core >= 1:1.5.19
 Requires: app-network-core >= 1:1.5.1
 
 %description core
@@ -74,7 +74,6 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/incoming_firewall/packaging
-%exclude /usr/clearos/apps/incoming_firewall/tests
 %dir /usr/clearos/apps/incoming_firewall
 /usr/clearos/apps/incoming_firewall/deploy
 /usr/clearos/apps/incoming_firewall/language

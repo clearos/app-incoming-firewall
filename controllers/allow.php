@@ -76,7 +76,8 @@ class Allow extends ClearOS_Controller
             $data['ranges'] = $this->incoming->get_allow_port_ranges();
             $data['ipsec'] = $this->incoming->get_ipsec_server_state();
             $data['pptp'] = $this->incoming->get_pptp_server_state();
-            $data['mode'] = $this->network->get_mode();
+            $data['network_mode'] = $this->network->get_mode();
+            $data['panic'] = $this->incoming->is_panic();
         } catch (Exception $e) {
             $this->page->view_exception($e);
             return;
