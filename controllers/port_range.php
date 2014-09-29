@@ -51,7 +51,7 @@ use \clearos\apps\firewall\Firewall as Firewall;
  * @link       http://www.clearfoundation.com/docs/developer/apps/incoming_firewall/
  */
 
-class Allow extends ClearOS_Controller
+class Port_Range extends ClearOS_Controller
 {
     /**
      * Incoming allow overview.
@@ -61,32 +61,51 @@ class Allow extends ClearOS_Controller
 
     function index()
     {
-        // Load dependencies
-        //------------------
-
-        $this->load->library('incoming_firewall/Incoming');
-        $this->load->library('network/Network');
-        $this->lang->load('incoming_firewall');
-
-        // Load view data
+        // Load libraries
         //---------------
 
-        try {
-            $data['ports'] = $this->incoming->get_allow_ports();
-            $data['ranges'] = $this->incoming->get_allow_port_ranges();
-            $data['ipsec'] = $this->incoming->get_ipsec_server_state();
-            $data['pptp'] = $this->incoming->get_pptp_server_state();
-            $data['network_mode'] = $this->network->get_mode();
-            $data['panic'] = $this->incoming->is_panic();
-        } catch (Exception $e) {
-            $this->page->view_exception($e);
-            return;
-        }
- 
-        // Load views
-        //-----------
+        $this->load->library('incoming_firewall/Incoming');
+        $this->lang->load('incoming_firewall');
+        $this->lang->load('base');
 
-        $this->page->view_form('incoming_firewall/allow/summary', $data, lang('incoming_firewall_allowed_incoming_connections'));
+        // Set validation rules
+        //---------------------
+
+        $this->form_validation->set_policy('range_nickname', 'incoming_firewall/Incoming', 'validate_name', TRUE);
+        $this->form_validation->set_policy('range_protocol', 'incoming_firewall/Incoming', 'validate_protocol', TRUE);
+        $this->form_validation->set_policy('range_from', 'incoming_firewall/Incoming', 'validate_port', TRUE);
+        $this->form_validation->set_policy('range_to', 'incoming_firewall/Incoming', 'validate_port', TRUE);
+
+        // Handle form submit
+        //-------------------
+
+        if ($this->form_validation->run()) {
+            try {
+                $this->incoming->add_allow_port_range(
+                    $this->input->post('range_nickname'),
+                    $this->input->post('range_protocol'),
+                    $this->input->post('range_from'),
+                    $this->input->post('range_to')
+                );
+
+                $this->page->set_status_added();
+                redirect('/incoming_firewall');
+            } catch (Exception $e) {
+                $this->page->view_exception($e);
+                return;
+            }
+        }
+
+        // Load the view data 
+        //------------------- 
+
+        // Get the form data
+        $data['protocols'] = $this->incoming->get_basic_protocols();
+
+        // Load the views
+        //---------------
+
+        $this->page->view_form('incoming_firewall/allow/port_range', $data, lang('base_add'));
     }
 
     /**
