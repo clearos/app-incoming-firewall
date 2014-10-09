@@ -65,12 +65,12 @@ $headers = array(
 ///////////////////////////////////////////////////////////////////////////////
 
 $anchors = anchor_multi(
-    lang('base_add'),
     array (
         'incoming_firewall/service' => lang('base_add_by') . ': ' . lang('firewall_service'),
         'incoming_firewall/port' => lang('base_add_by') . ': ' . lang('firewall_port'),
         'incoming_firewall/port_range' => lang('base_add_by') . ': ' . lang('firewall_port_range')
-    )
+    ),
+    lang('base_add')
 );
 
 ///////////////////////////////////////////////////////////////////////////////
