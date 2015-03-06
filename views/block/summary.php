@@ -85,6 +85,7 @@ sort($items);
 
 $options = array (
     'default_rows' => 25,
+    'sort-default-col' => 1,
     'row-enable-disable' => TRUE
 );
 
