@@ -5,7 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'incoming_firewall';
-$app['version'] = '2.1.6';
+$app['version'] = '2.1.7';
 $app['release'] = '1';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
@@ -48,4 +48,7 @@ $app['core_file_manifest'] = array(
         'target' => '/usr/sbin/allow-port',
         'mode' => '0755',
     ),
+);
+$app['delete_dependency'] = array(
+    'app-incoming-firewall-core'
 );

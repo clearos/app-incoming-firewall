@@ -1,0 +1,4 @@
+#!/bin/sh
+
+logger -p local6.notice -t installer "app-incoming-firewall-core - removing Incoming Firewall rules on un-install"
+/usr/clearos/apps/incoming_firewall/deploy/remove-incoming-firewall-rules
