@@ -1,7 +1,7 @@
 
 Name: app-incoming-firewall
 Epoch: 1
-Version: 2.1.7
+Version: 2.3.20
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
@@ -50,8 +50,6 @@ fi
 
 [ -x /usr/clearos/apps/incoming_firewall/deploy/upgrade ] && /usr/clearos/apps/incoming_firewall/deploy/upgrade
 
-
-
 exit 0
 
 %preun
@@ -65,8 +63,6 @@ if [ $1 -eq 0 ]; then
     [ -x /usr/clearos/apps/incoming_firewall/deploy/uninstall ] && /usr/clearos/apps/incoming_firewall/deploy/uninstall
 fi
 
-
-
 exit 0
 
 %files
@@ -78,6 +74,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/incoming_firewall/packaging
+%exclude /usr/clearos/apps/incoming_firewall/unify.json
 %dir /usr/clearos/apps/incoming_firewall
 /usr/clearos/apps/incoming_firewall/deploy
 /usr/clearos/apps/incoming_firewall/language
