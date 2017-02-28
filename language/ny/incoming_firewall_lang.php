@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Anandilola kugwirizana Zofika';
+$lang['incoming_firewall_app_description'] = 'The app Zofika makhoma oteteza amasunga anyamata oipa ndi kuchepetsa mwayi dongosolo lanu ndi kutsekereza kugwirizana osafunika.';
+$lang['incoming_firewall_app_name'] = 'ukubwera makhoma oteteza';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Watsekedwa kugwirizana Zofika';
