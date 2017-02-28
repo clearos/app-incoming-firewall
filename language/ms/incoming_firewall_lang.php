@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Dibenarkan Connections masuk';
+$lang['incoming_firewall_app_description'] = 'Aplikasi masuk Firewall membolehkan orang jahat keluar dengan mengehadkan akses kepada sistem anda dan menyekat sambungan yang tidak diingini.';
+$lang['incoming_firewall_app_name'] = 'Firewall masuk';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Disekat Connections masuk';
