@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Engedélyezett Bejövő kapcsolatok';
+$lang['incoming_firewall_app_description'] = 'A bejövő tűzfal app tartja a rosszfiúkat való hozzáférés korlátozása révén a rendszer, és blokkolja a nem kívánt kapcsolatokat.';
+$lang['incoming_firewall_app_name'] = 'bejövő tűzfal';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Blokkolt Bejövő kapcsolatok';
