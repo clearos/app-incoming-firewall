@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Whakaaetia Tūhononga Taumai';
+$lang['incoming_firewall_app_description'] = 'pupuri te taupānga Taumai Pātūahi te takatu kino i roto i na roto i te whāiti te uru ki tō pūnaha, me te ārai hononga e hiahiatia.';
+$lang['incoming_firewall_app_name'] = 'Pātūahi taumai';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Āraia Tūhononga Taumai';

@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Ekwe abata na njikọ';
+$lang['incoming_firewall_app_description'] = 'The abata na Firewall ngwa na-eme ka ndị ọjọọ ụmụ okorobịa site na ịmachi ohere gị usoro na igbochi achọghị njikọ.';
+$lang['incoming_firewall_app_name'] = '-abata Firewall';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Egbochi abata na njikọ';

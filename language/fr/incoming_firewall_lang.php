@@ -1,6 +1,6 @@
 <?php
 
-$lang['incoming_firewall_allowed_incoming_connections'] = 'Allowed Incoming Connections';
-$lang['incoming_firewall_app_description'] = 'The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.';
-$lang['incoming_firewall_app_name'] = 'Incoming Firewall';
-$lang['incoming_firewall_blocked_incoming_connections'] = 'Blocked Incoming Connections';
+$lang['incoming_firewall_allowed_incoming_connections'] = 'Connexions entrantes autorisés';
+$lang['incoming_firewall_app_description'] = 'L&#39;application Incoming Firewall empêche les mauvais gars en limitant l&#39;accès à votre système et de bloquer les connexions indésirables.';
+$lang['incoming_firewall_app_name'] = 'Pare-feu entrant';
+$lang['incoming_firewall_blocked_incoming_connections'] = 'Connexions entrantes bloquées';
