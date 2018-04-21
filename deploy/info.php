@@ -5,8 +5,7 @@
 /////////////////////////////////////////////////////////////////////////////
 
 $app['basename'] = 'incoming_firewall';
-$app['version'] = '2.3.22';
-$app['release'] = '1';
+$app['version'] = '2.5.0';
 $app['vendor'] = 'ClearFoundation';
 $app['packager'] = 'ClearFoundation';
 $app['license'] = 'GPLv3';
@@ -35,11 +34,12 @@ $app['controllers']['block']['title'] = lang('incoming_firewall_blocked_incoming
 /////////////////////////////////////////////////////////////////////////////
 
 $app['requires'] = array(
+    'app-firewall',
     'app-network',
 );
 
 $app['core_requires'] = array(
-    'app-firewall',
+    'app-firewall-core',
     'app-network-core >= 1:1.5.1',
 );
 

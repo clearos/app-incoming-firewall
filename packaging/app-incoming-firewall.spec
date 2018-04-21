@@ -1,26 +1,29 @@
 
 Name: app-incoming-firewall
 Epoch: 1
-Version: 2.3.22
+Version: 2.5.0
 Release: 1%{dist}
 Summary: Incoming Firewall
 License: GPLv3
-Group: ClearOS/Apps
+Group: Applications/Apps
+Packager: ClearFoundation
+Vendor: ClearFoundation
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
 Requires: app-base
+Requires: app-firewall
 Requires: app-network
 
 %description
 The Incoming Firewall app keeps the bad guys out by limiting access to your system and blocking unwanted connections.
 
 %package core
-Summary: Incoming Firewall - Core
+Summary: Incoming Firewall - API
 License: LGPLv3
-Group: ClearOS/Libraries
+Group: Applications/API
 Requires: app-base-core
-Requires: app-firewall
+Requires: app-firewall-core
 Requires: app-network-core >= 1:1.5.1
 
 %description core
